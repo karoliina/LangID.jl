@@ -1,0 +1,3 @@
+SELECT DISTINCT ngram
+FROM ngrams
+ORDER BY n ASC, ngram ASC;
