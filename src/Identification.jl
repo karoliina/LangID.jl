@@ -1,4 +1,4 @@
-module Identify
+module Identification
 
 using SQLite
 using Database, GetNgrams
