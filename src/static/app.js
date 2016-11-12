@@ -3,16 +3,15 @@
 var Vue = require("vue/dist/vue.js");
 var VueResource = require("vue-resource");
 Vue.use(VueResource);
-// var Plotly = require("plotly.js");
 var Chart = require("chart.js");
 
 var ENDPOINT = "http://127.0.0.1:8000/identify"
 
 window.addEventListener("load", runApp);
 
-Chart.defaults.global.defaultFontColor = "#222"
-Chart.defaults.global.defaultFontFamily = "Source Sans Pro"
-Chart.defaults.global.defaultFontSize = 12
+Chart.defaults.global.defaultFontColor = "#222";
+Chart.defaults.global.defaultFontFamily = "Source Sans Pro";
+Chart.defaults.global.defaultFontSize = 12;
 
 function runApp() {
     var app = new Vue({

@@ -5,15 +5,6 @@ using Database, Identification
 export root, identify
 
 
-# returns index.html as the response
-function root(req::Request, res::Response)
-    s = open(read, "index.html")
-    res.headers["Content-Type"] = "text/html"
-    res.data = s
-    res.status = 200
-end
-
-
 # returns language identification results for the given text as the response
 function identify(req::Request, res::Response, vectors::Dict{Int64,Tuple{String,SparseVector{Int64,Int64}}},
                   ngram_idx::Dict{String,Int64})

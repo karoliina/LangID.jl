@@ -101,11 +101,7 @@ function query_articles!(language::String, num_articles::Int64, db::SQLite.DB)
 end
 
 
-"""
-TODO docblock
-"""
 function construct_ngram_insert_query(num_ngrams::Int64)
-    # println("query has $(num_ngrams*5) variables")
     insert_ngram_sql = readstring("$(SQL_DIR)/insertNgram.sql")
     b_range = search(insert_ngram_sql, r"\([?, ]+\)")
     values_block = insert_ngram_sql[b_range]
@@ -118,9 +114,6 @@ function construct_ngram_insert_query(num_ngrams::Int64)
 end
 
 
-"""
-TODO docblock
-"""
 function create_and_store_ngrams!(language::String, articles::Array{Tuple{Int64,String,String}},
                                   n_start::Int64, n_stop::Int64, db::SQLite.DB)
     println("\tCreating N-grams...")
@@ -157,9 +150,6 @@ function create_and_store_ngrams!(language::String, articles::Array{Tuple{Int64,
                     sql2 = construct_ngram_insert_query(ngrams_in_remainder_query)
                     stmt = SQLite.Stmt(db, sql2)
                     i = 0
-                    # println("remainder:
-                    #         $(length(ngrams[n][id][max_ngrams_per_query*num_max_length_queries+1:end])*5)
-                    #         variables")
 
                     for (ngram, ngram_count) in ngrams[n][id][max_ngrams_per_query*num_max_length_queries+1:end]
                         SQLite.bind!(stmt, i+1, language)
