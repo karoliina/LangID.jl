@@ -1,0 +1,63 @@
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    background-color: #BBDDCC;
+    font-size: 12pt;
+    font-color: #222;
+    text-align: center;
+}
+h2 {
+    font-size: 22pt;
+}
+h3 {
+    font-size: 16pt;
+}
+div #app {
+    width: 600px;
+    margin: auto;
+}
+textarea {
+    width: 500px;
+    height: 150px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    padding: 5px;
+    display: block;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 12pt;
+}
+button {
+    border: 1px solid #888;
+    border-radius: 5px;
+    padding: 5px;
+    margin: auto;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 12pt;
+}
+div #results {
+    margin-top: 10px;
+}
+table {
+    border: 1px solid #888;
+    border-collapse: collapse;
+    font-size: 12pt;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+td {
+    padding: 3px;
+    border-left: 1px solid #888;
+}
+th {
+    padding: 3px;
+    border: 1px solid #888;
+}
+canvas {
+    display: inline-block;
+    margin: 20px;
+    width: 500px;
+    height: 400px;
+}

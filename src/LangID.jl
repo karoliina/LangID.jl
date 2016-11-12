@@ -12,13 +12,15 @@ const NGRAM_IDX_FILENAME = "ngram_idx.jls"
 function app(req::Request, vectors::Dict{Int64,Tuple{String,SparseVector{Int64,Int64}}},
                 ngram_idx::Dict{String,Int64})
     res = Response()
-    if req.resource == "/"
-        root(req, res)
-    elseif req.resource == "/identify"
+    if req.resource == "/identify"
         identify(req, res, vectors, ngram_idx)
     else
         res.data = "Not found"
     end
+    res.headers["Access-Control-Allow-Origin"] = "*"
+    res.headers["Access-Control-Allow-Credentials"] = "true"
+    res.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
+    res.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
     return res
 end
 
@@ -63,47 +65,6 @@ function main()
 
     server = Server((req, res) -> app(req, vectors, ngram_idx))
     run(server, args["port"])
-
-    """
-    command = "i"
-    while command != "q"
-        println("Enter i to identify text, q to quit")
-        command = chomp(readline())
-        if command == "i"
-            println("\nEnter some text, once done enter two empty lines")
-            text = ""
-            newline_count = 0
-            while newline_count < 2
-                line = readline()
-                line == "\n" ? newline_count += 1 : newline_count = 0
-                text *= line
-            end
-
-            if length(text) == 0
-                continue
-            end
-
-            println("\nIdentifying language")
-            results = identify_language(text, vectors, ngram_idx, 1, 5)
-            sort!(results, cols=:similarity, rev=true)
-
-            println("\nThe 10 most similar articles:")
-            for i=1:10
-                println("\t$(i). $(LANGUAGES[results[i,:language]]), similarity = $(results[i,:similarity])")
-            end
-
-            averages = aggregate(results, :language, mean)
-            sort!(averages, cols=:similarity_mean, rev=true)
-            println("\nThe 10 most similar languages by average article similarity:")
-            for i=1:10
-                lang = LANGUAGES[averages[i,:language]]
-                println("\t$(i). $(lang), similarity = $(averages[i,:similarity_mean])")
-            end
-        end
-        println()
-    end
-    println("Bye!")
-    """
 end
 
 if !isinteractive()

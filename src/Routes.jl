@@ -5,6 +5,7 @@ using Database, Identification
 export root, identify
 
 
+# returns index.html as the response
 function root(req::Request, res::Response)
     s = open(read, "index.html")
     res.headers["Content-Type"] = "text/html"
@@ -13,6 +14,7 @@ function root(req::Request, res::Response)
 end
 
 
+# returns language identification results for the given text as the response
 function identify(req::Request, res::Response, vectors::Dict{Int64,Tuple{String,SparseVector{Int64,Int64}}},
                   ngram_idx::Dict{String,Int64})
 
@@ -22,14 +24,12 @@ function identify(req::Request, res::Response, vectors::Dict{Int64,Tuple{String,
         return
     end
 
-    # println("\nIdentifying language")
+    println("\nIdentifying language: text = $(text)")
     results = identify_language(text, vectors, ngram_idx, 1, 5)
     sort!(results, cols=:similarity, rev=true)
 
-    # println("\nThe 10 most similar articles:")
     articles = Array{Dict{String,Any}}(10)
     for i=1:10
-        # println("\t$(i). $(LANGUAGES[results[i,:language]]), similarity = $(results[i,:similarity])")
         articles[i] = Dict{String,Any}()
         articles[i]["language"] = LANGUAGES[results[i,:language]]
         articles[i]["similarity"] = results[i,:similarity]
@@ -37,11 +37,9 @@ function identify(req::Request, res::Response, vectors::Dict{Int64,Tuple{String,
 
     averages = aggregate(results, :language, mean)
     sort!(averages, cols=:similarity_mean, rev=true)
-    # println("\nThe 10 most similar languages by average article similarity:")
     languages = Array{Dict{String,Any}}(10)
     for i=1:10
         lang = LANGUAGES[averages[i,:language]]
-        # println("\t$(i). $(lang), similarity = $(averages[i,:similarity_mean])")
         languages[i] = Dict{String,Any}()
         languages[i]["language"] = lang
         languages[i]["similarity"] = averages[i,:similarity_mean]

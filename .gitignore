@@ -1,2 +1,6 @@
 *.sqlite
 *.jls
+.eslintrc*
+*/node_modules/*
+package.json
+bundle.js
