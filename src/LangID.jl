@@ -85,17 +85,24 @@ function textUI(vectors::Dict{Int64,Tuple{String,SparseVector{Int64,Int64}}},
             averages = aggregate(results, :language, mean)
             sort!(averages, cols=:similarity_mean, rev=true)
 
-            println("\nThe 10 most similar languages by average article similarity:")
+            println("\nThe 10 most similar languages by average article similarity:\n")
+            println("\t    Language", repeat(" ", 11), "Similarity")
+            println("\t", repeat("-", 33))
             for i=1:10
-                lang = LANGUAGES[averages[i,:language]]
-                sim = @sprintf "%.2f" averages[i, :similarity_mean]
-                println("\t$(i). $(lang), similarity = $(sim)")
+                num = @sprintf "%2d" i
+                lang = @sprintf "%-18s" LANGUAGES[averages[i,:language]]
+                sim = @sprintf "%5.2f" averages[i, :similarity_mean]
+                println("\t$(num). $(lang) $(sim)")
             end
 
-            println("\nThe 10 most similar articles:")
+            println("\nThe 10 most similar articles:\n")
+            println("\t    Language", repeat(" ", 11), "Similarity")
+            println("\t", repeat("-", 33))
             for i=1:10
-                sim = @sprintf "%.2f" results[i, :similarity]
-                println("\t$(i). $(LANGUAGES[results[i,:language]]), similarity = $(sim)")
+                num = @sprintf "%2d" i
+                lang = @sprintf "%-18s" LANGUAGES[results[i,:language]]
+                sim = @sprintf "%5.2f" results[i, :similarity]
+                println("\t$(num). $(lang) $(sim)")
             end
         end
         println()
