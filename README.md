@@ -7,8 +7,8 @@ course](http://www.cs.mun.ca/~harold/Courses/CS4750/) at MUN. Identifies the lan
 by comparing its N-gram frequencies to those stored in a database created from Wikipedia articles in 30
 different languages. Uses cosine similarity as the similarity metric.
 
-Requires Julia 0.5, together with the `ArgParse`, `HttpServer` and `SQLite` packages (install with
-`Pkg.add("PackageName")`.
+Requires Julia 0.5, together with the `ArgParse`, `HttpServer`, `ProgressMeter`, `Formatting` and
+`SQLite` packages (install with `Pkg.add("PackageName")`).
 
 ## Usage
 
