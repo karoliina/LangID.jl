@@ -31,9 +31,11 @@ function runApp() {
         methods: {
             identify: function () {
                 this.$http.post(ENDPOINT, this.inputText).then(this.identifyCallback, this.identifyErrback);
+                this.$refs.btn.innerHTML = "Loading..."
             },
 
             identifyCallback: function (response) {
+                this.$refs.btn.innerHTML = "Identify"
                 var results = JSON.parse(response.body);
 
                 var languagesData = this.getData(results.languages);

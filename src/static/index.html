@@ -14,7 +14,7 @@
         <textarea v-model="inputText" placeholder="text to identify"></textarea>
 
         <div id="button">
-            <button v-on:click="identify">Identify</button>
+            <button v-on:click="identify" ref="btn">Identify</button>
         </div>
 
         <div id="results" ref="resultsNode">
