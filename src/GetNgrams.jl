@@ -29,7 +29,8 @@ function get_random_articles(language::String, n::Int64)
         "format"       => "json",
         "prop"         => "info",
         "grnnamespace" => 0,
-        "grnlimit"     => n
+        "grnlimit"     => n,
+        "utf8"         => true
     )
     url = format(API_URL, language)
 

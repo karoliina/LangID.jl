@@ -13,8 +13,8 @@ Requires Julia 0.5, together with the `ArgParse`, `HttpServer`, `ProgressMeter`,
 ## Usage
 
 `julia LangID.jl` will create the N-gram database on the first run. Requires an internet connection,
-since the program will query articles from the Wikipedia API. The resulting database is ~100 MB in size. Takes
-about 30 minutes.
+since the program will query articles from the Wikipedia API. The resulting database is ~130 MB in size. Takes
+about 2.5 hours.
 
 Once the database is created, it is saved under `ngrams.sqlite` by default. (A different filename can be given
 as a parameter to the program.) The command line version can then be run with `julia LangID.jl`.

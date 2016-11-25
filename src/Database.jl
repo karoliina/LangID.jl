@@ -36,7 +36,12 @@ const LANGUAGES = Dict{String,String}(
  "fi"  =>  "Finnish",
  "hu"  =>  "Hungarian",
  "id"  =>  "Indonesian",
- "ro"  =>  "Romanian"
+ "ro"  =>  "Romanian",
+ "cs"  =>  "Czech",
+ "ko"  =>  "Korean",
+ "sr"  =>  "Serbian",
+ "tr"  =>  "Turkish",
+ "ms"  =>  "Malay"
 )
 
 # directory containing the SQL files
